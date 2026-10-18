@@ -1,371 +1,335 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://api.binance.com https://api.qrserver.com https://rpc.ankr.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: https://api.qrserver.com;">
-<title>NEXORA CORE — Autonomous AI Agency</title>
-<style>
-:root{--bg:#07090e;--card:#111520;--accent:#00f2fe;--accent2:#4facfe;--text:#eef2f7;--muted:#8a99ad;--ok:#00e676;--danger:#ff3d71;--border:#1e2638}
-*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
-header{background:rgba(17,21,32,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:.5px}
-.dot{width:10px;height:10px;background:var(--ok);border-radius:50%;box-shadow:0 0 10px var(--ok);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.top-controls{display:flex;gap:8px;align-items:center}
-select,button,input{background:var(--card);color:var(--text);border:1px solid var(--border);padding:8px 12px;border-radius:10px;font-size:13px;outline:none}
-.btn-accent{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;font-weight:700;border:none;cursor:pointer}
-.btn-owner{background:#1a1f2e;border:1px solid #2e3852;color:var(--accent);cursor:pointer;font-weight:600}
-main{flex:1;max-width:950px;width:100%;margin:0 auto;padding:16px;display:grid;gap:16px}
-.radar-bar{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:13px}
-.chat-box{background:var(--card);border:1px solid var(--border);border-radius:18px;display:flex;flex-direction:column;height:62vh;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.5)}
-.messages{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
-.msg{max-width:85%;padding:12px 15px;border-radius:14px;line-height:1.45;font-size:14px;word-wrap:break-word}
-.msg.ai{background:#182032;align-self:flex-start;border-bottom-left-radius:4px;border:1px solid #25304a}
-.msg.user{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#041019;font-weight:500;align-self:flex-end;border-bottom-right-radius:4px}
-.quick-chips{display:flex;gap:8px;padding:8px 14px;overflow-x:auto;border-top:1px solid var(--border);background:#0c1018}
-.chip{white-space:nowrap;background:#182032;border:1px solid #26324d;color:var(--text);padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer}
-.input-row{display:flex;gap:8px;padding:12px;background:#0b0e17;border-top:1px solid var(--border)}
-.input-row input{flex:1;padding:12px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px;z-index:100}
-.modal.active{display:flex}
-.modal-card{background:var(--card);border:1px solid var(--border);border-radius:18px;max-width:520px;width:100%;padding:20px;max-height:90vh;overflow-y:auto}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
-.stat-card{background:#0b0e17;border:1px solid var(--border);padding:12px;border-radius:12px}
-.stat-val{font-size:20px;font-weight:800;color:var(--accent);margin-top:4px}
-.wallet-box{background:#0b0e17;border:1px dashed var(--accent);padding:12px;border-radius:12px;word-break:break-all;font-family:monospace;font-size:12px;margin:10px 0;text-align:center}
-.log-box{background:#06080d;border:1px solid var(--border);border-radius:10px;padding:10px;font-family:monospace;font-size:11px;height:130px;overflow-y:auto;color:#00e676}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXORA CORE — Autonomous AI Agency</title>
+  <style>
+    :root {
+      --bg: #07090e;
+      --card: #0f1420;
+      --border: #1e293b;
+      --accent: #00f2fe;
+      --accent2: #4facfe;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --success: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0%, var(--bg) 70%);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(15, 20, 32, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--success);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--success);
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 28px auto;
+      padding: 0 18px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .panel-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-box {
+      background: #090d16;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      height: 260px;
+      overflow-y: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .msg {
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .msg.ai {
+      background: #161f33;
+      border: 1px solid #263554;
+      align-self: flex-start;
+    }
+
+    .msg.user {
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: #041019;
+      font-weight: 600;
+      align-self: flex-end;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      background: #090d16;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 10px;
+      outline: none;
+      font-size: 0.95rem;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--accent);
+    }
+
+    button {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #041019;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      background: #151d2e;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .chip:hover {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="brand"><span class="dot"></span>NEXORA AI</div>
-  <div class="top-controls">
-    <select id="langSelect" aria-label="Language">
-      <option value="uk">🇺🇦 UA</option>
-      <option value="en">🇬🇧 EN</option>
-      <option value="cs">🇨🇿 CZ</option>
-      <option value="pl">🇵🇱 PL</option>
-      <option value="de">🇩🇪 DE</option>
-    </select>
-    <select id="currSelect" aria-label="Currency">
-      <option value="USD">USD ($)</option>
-      <option value="EUR">EUR (€)</option>
-      <option value="CZK">CZK (Kč)</option>
-      <option value="UAH">UAH (₴)</option>
-      <option value="PLN">PLN (zł)</option>
-    </select>
-    <button class="btn-owner" id="ownerBtn">👑 Owner</button>
-  </div>
-</header>
-
-<main>
-  <div class="radar-bar">
-    <div>🤖 <b>Autonomous Master Agent:</b> <span id="radarStatus" style="color:var(--ok)">Scanning global tasks 24/7...</span></div>
-    <div>⚡ Завершено угод: <b id="dealsCount">142</b></div>
-  </div>
-
-  <div class="chat-box">
-    <div class="messages" id="chatMessages"></div>
-    <div class="quick-chips">
-      <button class="chip" data-q="website">🌐 Сайт / Лендінг під ключ</button>
-      <button class="chip" data-q="bot">🤖 AI-Бот та Автоматизація</button>
-      <button class="chip" data-q="copy">✍️ SEO-Тексти, Переклад, Код</button>
-      <button class="chip" data-q="pay">💳 Оплата і Гаманець</button>
+  <header>
+    <div class="logo">NEXORA CORE</div>
+    <div class="status-badge">
+      <span class="dot"></span>
+      CORE ONLINE v4.2
     </div>
-    <div class="input-row">
-      <input type="text" id="userInput" placeholder="Напишіть ваше завдання для AI-Агента..." autocomplete="off">
-      <button class="btn-accent" id="sendBtn">Надіслати</button>
-    </div>
-  </div>
-</main>
+  </header>
 
-<!-- Модальне вікно Оплати -->
-<div class="modal" id="payModal">
-  <div class="modal-card">
-    <h3 style="margin-bottom:8px">💎 Оплата замовлення (Web3 / Crypto)</h3>
-    <p style="font-size:13px;color:var(--muted)">Офіційний гаманець NEXORA (ETH / USDT / USDC / BNB / MATIC):</p>
-    <div class="wallet-box" id="walletDisplay"></div>
-    <div style="text-align:center;margin:10px 0">
-      <img id="qrImg" alt="Wallet QR" style="border-radius:10px;border:4px solid #fff;width:160px;height:160px">
-    </div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn-accent" style="flex:1" id="copyWalletBtn">📋 Скопіювати адресу</button>
-      <button style="flex:1" id="paidConfirmBtn">✅ Я оплатив</button>
-      <button id="closePayBtn">✖</button>
-    </div>
-  </div>
-</div>
+  <div class="container">
+    <section class="hero">
+      <h1>NEXORA CORE — Autonomous AI System</h1>
+      <p>Центральне ядро керування автономними AI-агентами, аналітикою та автоматизацією угод</p>
+    </section>
 
-<!-- Секретна Адмін-Панель Власника -->
-<div class="modal" id="ownerModal">
-  <div class="modal-card">
-    <div id="pinScreen">
-      <h3>🔒 Вхід Власника (Security Shield)</h3>
-      <p style="font-size:13px;color:var(--muted);margin:8px 0">Введіть секретний PIN-код доступу:</p>
-      <input type="password" id="pinInput" maxlength="8" placeholder="••••" style="width:100%;text-align:center;font-size:20px;letter-spacing:6px;margin-bottom:10px">
-      <div id="pinError" style="color:var(--danger);font-size:12px;margin-bottom:8px"></div>
-      <div style="display:flex;gap:8px">
-        <button class="btn-accent" style="flex:1" id="unlockBtn">Відкрити панель</button>
-        <button id="closeOwnerBtn1">Закрити</button>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Завершено угод</div>
+        <div class="stat-value" id="dealsCount">148</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Активні AI-вузли</div>
+        <div class="stat-value" id="nodesCount">12 / 12</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Автономний дохід (24г)</div>
+        <div class="stat-value" id="revCount">$4,820</div>
       </div>
     </div>
 
-    <div id="adminDashboard" style="display:none">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-        <h3>👑 NEXORA Owner Command Center</h3>
-        <button id="closeOwnerBtn2">✖</button>
+    <div class="panel">
+      <div class="panel-title">
+        <span>⚡ Термінал NEXORA CORE</span>
+        <span style="font-size: 0.8rem; color: var(--muted);">AI-Ядро активне</span>
       </div>
-      <div class="grid-2">
-        <div class="stat-card">
-          <div style="font-size:12px;color:var(--muted)">Баланс та Дохід Агента</div>
-          <div class="stat-val" id="admRevenue">$1,840.00</div>
-        </div>
-        <div class="stat-card">
-          <div style="font-size:12px;color:var(--muted)">Відвідувачі / Клієнти</div>
-          <div class="stat-val" id="admVisitors">318 / 29</div>
-        </div>
-        <div class="stat-card">
-          <div style="font-size:12px;color:var(--muted)">On-Chain ETH Баланс</div>
-          <div class="stat-val" id="admOnChain">Checking...</div>
-        </div>
-        <div class="stat-card">
-          <div style="font-size:12px;color:var(--muted)">Статус безпеки</div>
-          <div class="stat-val" style="color:var(--ok);font-size:14px">🛡 SHA-256 ACTIVE</div>
+
+      <div class="chat-box" id="chatBox">
+        <div class="msg ai">
+          Система <strong>NEXORA CORE</strong> успішно ініціалізована. Всі автономні модулі працюють у штатному режимі. Яке завдання запускаємо?
         </div>
       </div>
-      <p style="font-size:12px;color:var(--muted);margin-bottom:6px">Наживо: Лог автономного AI-Агента (24/7 Auto-Hunter):</p>
-      <div class="log-box" id="agentLog"></div>
-      <div style="display:flex;gap:8px;margin-top:12px">
-        <button class="btn-accent" style="flex:1" id="boostAgentBtn">🚀 Запустити глибокий пошук клієнтів</button>
-        <button id="openPayFromAdmin">💳 QR Гаманця</button>
+
+      <div class="input-row">
+        <input type="text" id="userInput" placeholder="Введіть команду для NEXORA CORE..." />
+        <button onclick="sendMessage()">Запустити</button>
+      </div>
+
+      <div class="quick-actions">
+        <span class="chip" onclick="quickCmd('Запустити пошук нових клієнтів')">🚀 Пошук клієнтів</span>
+        <span class="chip" onclick="quickCmd('Звіт по доходах за сьогодні')">📊 Звіт доходів</span>
+        <span class="chip" onclick="quickCmd('Оптимізувати AI-агентів')">⚙️ Оптимізація ядра</span>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-"use strict";
-(function(){
-  // Заморожена конфігурація без можливості підміни гаманця
-  const CONFIG = Object.freeze({
-    WALLET: "0x0eA07A3001E1d1F74cf06722e90b66ca423F08de",
-    // SHA-256 хеш від PIN "2006"
-    PIN_HASH: "3895c2d9a1f1c5c4a32169c0d8d8137f5a30df4d83e9f9d60ef5018b35be69d6",
-    RATES: { USD: 1, EUR: 0.92, CZK: 23.4, UAH: 41.5, PLN: 3.98 },
-    SYMBOLS: { USD: "$", EUR: "€", CZK: "Kč", UAH: "₴", PLN: "zł" }
-  });
+  <script>
+    const chatBox = document.getElementById('chatBox');
+    const userInput = document.getElementById('userInput');
+    const dealsEl = document.getElementById('dealsCount');
+    let deals = 148;
 
-  let state = {
-    lang: "uk",
-    curr: "USD",
-    baseRevenueUSD: Number(localStorage.getItem("nx_rev")) || 1840,
-    visitors: (Number(localStorage.getItem("nx_vis")) || 317) + 1,
-    leads: Number(localStorage.getItem("nx_leads")) || 29,
-    deals: Number(localStorage.getItem("nx_deals")) || 142,
-    failedAttempts: 0,
-    lockUntil: 0
-  };
-  localStorage.setItem("nx_vis", state.visitors);
+    function appendMsg(text, sender) {
+      const div = document.createElement('div');
+      div.className = 'msg ' + sender;
+      div.innerHTML = text;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
 
-  // XSS Санітизація тексту
-  function clean(str) {
-    return String(str).replace(/[&<>"'`=/]/g, function(s) {
-      return {"&":"&","<":"<",">":">",'"':""","'":"'","/":"/","`":"`","=":"="}[s];
+    function sendMessage() {
+      const text = userInput.value.trim();
+      if (!text) return;
+      appendMsg(text, 'user');
+      userInput.value = '';
+
+      setTimeout(() => {
+        deals += 1;
+        dealsEl.textContent = deals;
+        appendMsg(
+          '✅ <strong>NEXORA CORE:</strong> Команду <em>«' + text + '»</em> виконано. Автономний модуль оновив показники (+1 угода).',
+          'ai'
+        );
+      }, 600);
+    }
+
+    function quickCmd(cmd) {
+      userInput.value = cmd;
+      sendMessage();
+    }
+
+    userInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') sendMessage();
     });
-  }
-
-  function formatPrice(usd) {
-    const val = (usd * CONFIG.RATES[state.curr]).toFixed(0);
-    return state.curr === "USD" || state.curr === "EUR" ? CONFIG.SYMBOLS[state.curr] + val : val + " " + CONFIG.SYMBOLS[state.curr];
-  }
-
-  const chatEl = document.getElementById("chatMessages");
-  function addMsg(text, sender) {
-    const div = document.createElement("div");
-    div.className = "msg " + (sender === "user" ? "user" : "ai");
-    div.innerHTML = sender === "user" ? clean(text) : text;
-    chatEl.appendChild(div);
-    chatEl.scrollTop = chatEl.scrollHeight;
-  }
-
-  // Розумний автономний AI-Агент, який веде клієнта від початку до оплати
-  function agentReply(rawInput) {
-    const q = rawInput.toLowerCase();
-    state.leads++;
-    localStorage.setItem("nx_leads", state.leads);
-
-    if (q.includes("website") || q.includes("сайт") || q.includes("лендінг") || q.includes("web")) {
-      return "🌐 <b>Розробка Сайту / Web-платформи під ключ:</b><br>Я створю для вас швидкий сучасний сайт з адаптацією під смартфони, SEO-оптимізацією та прийомом оплат.<br>• Термін: <b>сьогодні за 2–4 години</b><br>• Вартість під ключ: <b>" + formatPrice(120) + "</b><br><br>Напишіть коротко нішу вашого бізнесу або натисніть кнопку <b>«💳 Оплата і Гаманець»</b> для миттєвого старту!";
-    }
-    if (q.includes("bot") || q.includes("бот") || q.includes("ai") || q.includes("автомат")) {
-      return "🤖 <b>Автономний AI-Агент / Чат-бот для бізнесу:</b><br>Налаштую цілодобового AI-бота, який сам відповідає клієнтам, приймає замовлення і збільшує продажі 24/7.<br>• Вартість розробки: <b>" + formatPrice(150) + "</b><br><br>Готові запустити? Натисніть <b>«💳 Оплата і Гаманець»</b> або напишіть деталі!";
-    }
-    if (q.includes("copy") || q.includes("текст") || q.includes("переклад") || q.includes("код") || q.includes("seo")) {
-      return "✍️ <b>Миттєве виконання завдання (Код / SEO-статті / Переклад):</b><br>Я можу виконати ваше завдання прямо зараз! Вартість стартує від <b>" + formatPrice(35) + "</b>.<br>Надішліть сюди ваше технічне завдання або текст — я одразу зроблю попередній результат і виставлю рахунок.";
-    }
-    if (q.includes("pay") || q.includes("оплат") || q.includes("гаманець") || q.includes("ціна") || q.includes("купити")) {
-      openPaymentModal();
-      return "💎 Я відкрив для вас захищене вікно оплати! Ви можете переказати кошти у <b>USDT, USDC, ETH, BNB або MATIC</b> на наш офіційний гаманець:<br><code>" + CONFIG.WALLET + "</code><br>Після переказу натисніть <b>«Я оплатив»</b>, і я миттєво видам готове замовлення.";
-    }
-    return "🤖 <b>Прийнято в роботу!</b> Я проаналізував ваш запит: <i>«" + clean(rawInput) + "»</i>.<br><br>Я — головний автономний AI-Агент NEXORA. Можу виконати це завдання під ключ сьогодні за <b>" + formatPrice(75) + "</b>.<br>1️⃣ Напишіть уточнення, якщо вони є.<br>2️⃣ Або натисніть <b>«💳 Оплата і Гаманець»</b> для миттєвого запуску проекту!";
-  }
-
-  // Вітальне повідомлення
-  addMsg("👋 Вітаю! Я — <b>Головний Автономний AI-Агент NEXORA</b>.<br>Я сам веду проекти від ідеї до фінального результату 24/7: створюю сайти, AI-ботів, пишу код, продаючі тексти та автоматизую бізнес.<br><br>Оберіть потрібну послугу внизу або просто напишіть, що потрібно зробити!", "ai");
-
-  document.getElementById("sendBtn").addEventListener("click", function() {
-    const inp = document.getElementById("userInput");
-    const txt = inp.value.trim();
-    if (!txt) return;
-    addMsg(txt, "user");
-    inp.value = "";
-    setTimeout(function() { addMsg(agentReply(txt), "ai"); }, 450);
-  });
-
-  document.getElementById("userInput").addEventListener("keydown", function(e) {
-    if (e.key === "Enter") document.getElementById("sendBtn").click();
-  });
-
-  document.querySelectorAll(".chip").forEach(function(btn) {
-    btn.addEventListener("click", function() {
-      const q = btn.getAttribute("data-q");
-      addMsg(btn.textContent, "user");
-      setTimeout(function() { addMsg(agentReply(q), "ai"); }, 350);
-    });
-  });
-
-  document.getElementById("currSelect").addEventListener("change", function(e) {
-    state.curr = e.target.value;
-    updateAdminStats();
-  });
-
-  // Модальне вікно оплати
-  const payModal = document.getElementById("payModal");
-  function openPaymentModal() {
-    document.getElementById("walletDisplay").textContent = CONFIG.WALLET;
-    document.getElementById("qrImg").src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(CONFIG.WALLET);
-    payModal.classList.add("active");
-  }
-  document.getElementById("closePayBtn").addEventListener("click", function() { payModal.classList.remove("active"); });
-  document.getElementById("copyWalletBtn").addEventListener("click", function() {
-    navigator.clipboard.writeText(CONFIG.WALLET);
-    alert("✅ Адресу гаманця скопійовано: " + CONFIG.WALLET);
-  });
-  document.getElementById("paidConfirmBtn").addEventListener("click", function() {
-    payModal.classList.remove("active");
-    state.baseRevenueUSD += 75;
-    state.deals += 1;
-    localStorage.setItem("nx_rev", state.baseRevenueUSD);
-    localStorage.setItem("nx_deals", state.deals);
-    document.getElementById("dealsCount").textContent = state.deals;
-    addMsg("✅ <b>Транзакцію зафіксовано в блокчейні!</b> Дякую за оплату. Я вже виконую ваше замовлення у пріоритетному режимі.", "ai");
-  });
-
-  // Криптографічна перевірка PIN-коду (2006)
-  async function sha256(str) {
-    const buf = new TextEncoder().encode(str);
-    const hashBuf = await crypto.subtle.digest("SHA-256", buf);
-    return Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2, "0")).join("");
-  }
-
-  const ownerModal = document.getElementById("ownerModal");
-  document.getElementById("ownerBtn").addEventListener("click", function() {
-    ownerModal.classList.add("active");
-  });
-  document.getElementById("closeOwnerBtn1").addEventListener("click", function() { ownerModal.classList.remove("active"); });
-  document.getElementById("closeOwnerBtn2").addEventListener("click", function() { ownerModal.classList.remove("active"); });
-
-  document.getElementById("unlockBtn").addEventListener("click", async function() {
-    const now = Date.now();
-    const errEl = document.getElementById("pinError");
-    if (now < state.lockUntil) {
-      errEl.textContent = "⛔ Забагато спроб! Зачекайте 30 секунд.";
-      return;
-    }
-    const pin = document.getElementById("pinInput").value.trim();
-    const h = await sha256(pin);
-    // Перевірка SHA-256 або резервна перевірка для старих мобільних WebView
-    if (h === CONFIG.PIN_HASH || pin === String(2000 + 6)) {
-      state.failedAttempts = 0;
-      errEl.textContent = "";
-      document.getElementById("pinInput").value = "";
-      document.getElementById("pinScreen").style.display = "none";
-      document.getElementById("adminDashboard").style.display = "block";
-      updateAdminStats();
-      checkOnChainBalance();
-    } else {
-      state.failedAttempts++;
-      if (state.failedAttempts >= 3) {
-        state.lockUntil = Date.now() + 30000;
-        errEl.textContent = "⛔ Вхід заблоковано на 30 сек через 3 невдалі спроби!";
-      } else {
-        errEl.textContent = "❌ Невірний PIN-код! Спроба " + state.failedAttempts + " з 3.";
-      }
-    }
-  });
-
-  function updateAdminStats() {
-    document.getElementById("admRevenue").textContent = formatPrice(state.baseRevenueUSD);
-    document.getElementById("admVisitors").textContent = state.visitors + " / " + state.leads;
-  }
-
-  async function checkOnChainBalance() {
-    const el = document.getElementById("admOnChain");
-    try {
-      const res = await fetch("https://rpc.ankr.com/eth", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({jsonrpc:"2.0",method:"eth_getBalance",params:[CONFIG.WALLET,"latest"],id:1})
-      });
-      const data = await res.json();
-      if (data && data.result) {
-        const eth = (parseInt(data.result, 16) / 1e18).toFixed(4);
-        el.textContent = eth + " ETH";
-      } else {
-        el.textContent = "0.0000 ETH (Active)";
-      }
-    } catch (e) {
-      el.textContent = "Web3 Active";
-    }
-  }
-
-  // Автономний радар і лог роботи агента
-  const logEl = document.getElementById("agentLog");
-  const tasks = [
-    "Scanning freelance & B2B boards for web/AI orders...",
-    "Auto-replied to EU client inquiry (Landing Page)...",
-    "Verified wallet integrity: 0x0eA0...08de [OK]",
-    "SEO module indexed new multilingual keywords...",
-    "Smart-contract payment gateway ready (USDT/ETH)..."
-  ];
-  function pushLog(msg) {
-    const time = new Date().toLocaleTimeString();
-    const line = document.createElement("div");
-    line.textContent = "[" + time + "] " + msg;
-    logEl.prepend(line);
-  }
-  tasks.forEach(pushLog);
-  setInterval(function() {
-    const item = tasks[Math.floor(Math.random() * tasks.length)];
-    pushLog(item);
-    document.getElementById("radarStatus").textContent = item;
-  }, 5500);
-
-  document.getElementById("boostAgentBtn").addEventListener("click", function() {
-    state.visitors += 5;
-    state.leads += 2;
-    updateAdminStats();
-    pushLog("🚀 TURBO SCAN: Знайдено +2 нових потенційних клієнтів!");
-  });
-
-  document.getElementById("openPayFromAdmin").addEventListener("click", function() {
-    ownerModal.classList.remove("active");
-    openPaymentModal();
-  });
-})();
-</script>
+  </script>
 </body>
 </html>
